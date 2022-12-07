@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "955055547973",
+    "firebase_url": "https://fyp-travel-guide-6b527-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "fyp-travel-guide-6b527",
+    "storage_bucket": "fyp-travel-guide-6b527.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955055547973:android:2f434e14ab77e61c0f652c",
+        "android_client_info": {
+          "package_name": "com.example.fyp_admin_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955055547973-t6sat8d2idst539gv1m9rohnvb96435i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzWtJISj_lsJyJtA2OvjunZ-YCHOZAEXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955055547973-t6sat8d2idst539gv1m9rohnvb96435i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "955055547973-6sjp5jj5et6bpp6as0fr5op1rribgulm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fypProject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955055547973:android:13780bc8c3a4475a0f652c",
+        "android_client_info": {
+          "package_name": "com.example.fyp_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955055547973-t6sat8d2idst539gv1m9rohnvb96435i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzWtJISj_lsJyJtA2OvjunZ-YCHOZAEXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955055547973-t6sat8d2idst539gv1m9rohnvb96435i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "955055547973-6sjp5jj5et6bpp6as0fr5op1rribgulm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fypProject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955055547973:android:1e9516ae8dde7fed0f652c",
+        "android_client_info": {
+          "package_name": "com.example.travel_guide_tourist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955055547973-t6sat8d2idst539gv1m9rohnvb96435i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzWtJISj_lsJyJtA2OvjunZ-YCHOZAEXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955055547973-t6sat8d2idst539gv1m9rohnvb96435i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "955055547973-6sjp5jj5et6bpp6as0fr5op1rribgulm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fypProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

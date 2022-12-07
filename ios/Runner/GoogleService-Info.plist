@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>955055547973-jg1jmlrqln92de94stor5d4fdh99jbv8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.955055547973-jg1jmlrqln92de94stor5d4fdh99jbv8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDoDxxQdRI2zODyBuHkiK7V1CXedelh8K8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>955055547973</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.fypAdminApp</string>
+	<key>PROJECT_ID</key>
+	<string>fyp-travel-guide-6b527</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fyp-travel-guide-6b527.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:955055547973:ios:f1e9b528d1d8c4b40f652c</string>
+	<key>DATABASE_URL</key>
+	<string>https://fyp-travel-guide-6b527-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
