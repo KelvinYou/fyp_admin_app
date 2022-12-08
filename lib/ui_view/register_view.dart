@@ -139,7 +139,7 @@ class _RegisterState extends State<Register> {
       child: CircularProgressIndicator(),
     ) : Scaffold(
       appBar: const SecondaryAppBar(
-          title: "Register an Account"
+          title: "Register an Admin Account"
       ),
       body: Container(
         height: double.infinity,
@@ -161,7 +161,7 @@ class _RegisterState extends State<Register> {
               ),
               const SizedBox(height: 5.0),
               const Text(
-                "Be A Tour Guide With Us",
+                "Admin Registration",
                 style: TextStyle(
                   color: AppTheme.primary,
                   fontWeight: FontWeight.bold,

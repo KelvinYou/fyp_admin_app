@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fyp_admin_app/models/user.dart' as model;
+import 'package:fyp_admin_app/models/admin.dart' as model;
 import 'package:fyp_admin_app/resources/firestore_methods.dart';
 import 'package:fyp_admin_app/resources/storage_methods.dart';
 
@@ -10,13 +10,13 @@ class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // get user details
-  Future<model.User> getUserDetails() async {
+  Future<model.AdminAccount> getUserDetails() async {
     User currentUser = _auth.currentUser!;
 
     DocumentSnapshot documentSnapshot =
     await _firestore.collection('tourGuides').doc(currentUser.uid).get();
 
-    return model.User.fromSnap(documentSnapshot);
+    return model.AdminAccount.fromSnap(documentSnapshot);
   }
 
   // Signing Up User
@@ -38,42 +38,17 @@ class AuthMethods {
         );
 
         //
-        model.User _user = model.User(
+        model.AdminAccount _user = model.AdminAccount(
           uid: cred.user!.uid,
           username: username,
-          fullname: "",
-          phoneNumber: "",
           email: email,
-          isEmailVerified: false,
-          icNumber: "",
-          isIcVerified: false,
-          photoUrl: "https://firebasestorage.googleapis.com/v0/b/fyp-travel-guide-6b527.appspot.com/o/default-avatar.jpg?alt=media",
-          description: "",
-          language: {},
-          rating: 0,
-          rateNumber: 0,
-          totalDone: 0,
-          grade: "New User",
         );
 
         // // adding user in our database
         await _firestore
-            .collection("tourGuides")
+            .collection("admins")
             .doc(cred.user!.uid)
             .set(_user.toJson());
-
-        res = await FireStoreMethods().updateEWallet(
-          cred.user!.uid,
-          0,
-        );
-
-        res = await FireStoreMethods().updateOrder(
-          cred.user!.uid,
-          0,
-          false,
-          0,
-          0,
-        );
 
       } else {
         res = "Please enter all the fields";

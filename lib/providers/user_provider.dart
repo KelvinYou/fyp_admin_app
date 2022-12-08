@@ -1,15 +1,15 @@
 import 'package:flutter/widgets.dart';
-import 'package:fyp_admin_app/models/user.dart';
+import 'package:fyp_admin_app/models/admin.dart';
 import 'package:fyp_admin_app/resources/auth_methods.dart';
 
 class UserProvider with ChangeNotifier {
-  User? _user;
+  AdminAccount? _user;
   final AuthMethods _authMethods = AuthMethods();
 
-  User get getUser => _user!;
+  AdminAccount get getUser => _user!;
 
   Future<void> refreshUser() async {
-    User user = await _authMethods.getUserDetails();
+    AdminAccount user = await _authMethods.getUserDetails();
     _user = user;
     notifyListeners();
   }

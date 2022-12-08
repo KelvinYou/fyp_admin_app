@@ -5,6 +5,7 @@ import 'package:fyp_admin_app/main.dart';
 import 'package:fyp_admin_app/ui_view/admin_chatroom_view.dart';
 import 'package:fyp_admin_app/ui_view/admin_home_view.dart';
 import 'package:fyp_admin_app/ui_view/admin_profile_view.dart';
+import 'package:fyp_admin_app/ui_view/database/tour_guides.dart';
 import 'package:fyp_admin_app/utils/app_theme.dart';
 
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _MyBottomBarView extends State<BottomBarView> {
 
   static List<Widget> _widgetOptions = <Widget>[
     AdminHomeView(),
-    AdminChatroomView(),
+    // AdminChatroomView(),
     AdminProfileView(),
   ];
 
@@ -70,11 +71,11 @@ class _MyBottomBarView extends State<BottomBarView> {
             activeIcon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message_outlined),
-            activeIcon: Icon(Icons.message),
-            label: 'Message',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.message_outlined),
+          //   activeIcon: Icon(Icons.message),
+          //   label: 'Message',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outlined),
             activeIcon: Icon(Icons.person),
