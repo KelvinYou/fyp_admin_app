@@ -67,12 +67,13 @@ class _DatabaseCardState extends State<DatabaseCard> {
                         ),
                         widget.showField == widget.documentId ? SizedBox() :
                         Text(
-                          "${widget.showField}: " + widget.snap[widget.showField],
+                          "${widget.showField}: ${widget.snap[widget.showField].replaceAll(RegExp(r'\n'), ' ')}",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w300,
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
+                          maxLines: 1,
                         ),
                       ],
                     ),

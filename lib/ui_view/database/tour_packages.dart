@@ -47,7 +47,7 @@ class _TourPackagesViewState extends State<TourPackagesView> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(title: "Tour Guides"),
+      appBar: MainAppBar(title: "Tour Packages"),
       body: isLoading ? LoadingView() : Container(
         // width: double.infinity,
         height: double.infinity,

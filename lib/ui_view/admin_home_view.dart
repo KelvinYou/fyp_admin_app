@@ -2,8 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fyp_admin_app/ui_view/database/bookings.dart';
+import 'package:fyp_admin_app/ui_view/database/instant_orders.dart';
 import 'package:fyp_admin_app/ui_view/database/tour_guides.dart';
 import 'package:fyp_admin_app/ui_view/database/tour_packages.dart';
+import 'package:fyp_admin_app/ui_view/database/transactions.dart';
 import 'package:fyp_admin_app/widget/app_bar/main_app_bar.dart';
 import 'package:fyp_admin_app/widget/loading_view.dart';
 import 'package:fyp_admin_app/widget/main_container.dart';
@@ -212,7 +215,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const TourGuidesView(),
+                            builder: (context) => const InstantOrdersView(),
                           ),
                         ),
                         child: selectionViewNoIcon(
@@ -229,7 +232,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const TourGuidesView(),
+                            builder: (context) => const BookingsView(),
                           ),
                         ),
                         child: selectionViewNoIcon(
@@ -246,7 +249,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const TourGuidesView(),
+                            builder: (context) => const TransactionsView(),
                           ),
                         ),
                         child: selectionViewNoIcon(

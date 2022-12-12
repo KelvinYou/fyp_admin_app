@@ -14,18 +14,18 @@ import 'package:fyp_admin_app/widget/dialogs.dart';
 import 'package:intl/intl.dart';
 import 'package:fyp_admin_app/widget/image_full_screen.dart';
 
-class TourPackageDetail extends StatefulWidget {
+class TransactionDetail extends StatefulWidget {
   final snap;
-  const TourPackageDetail({
+  const TransactionDetail({
     super.key,
     required this.snap,
   });
 
   @override
-  State<TourPackageDetail> createState() => _TourPackageDetailState();
+  State<TransactionDetail> createState() => _TransactionDetailState();
 }
 
-class _TourPackageDetailState extends State<TourPackageDetail> {
+class _TransactionDetailState extends State<TransactionDetail> {
   bool isLoading = false;
   List<String> selectedTypes = [];
 
@@ -90,7 +90,7 @@ class _TourPackageDetailState extends State<TourPackageDetail> {
   delete() async {
     String res = "Some error occurred";
     try {
-      FirebaseFirestore.instance.collection('tourPackages').doc(widget.snap["packageId"]).delete();
+      FirebaseFirestore.instance.collection('transactions').doc(widget.snap["transactionId"]).delete();
       res = 'Deleted Successfully';
       showSnackBar(context, res);
       Navigator.of(context).pop();
@@ -108,7 +108,7 @@ class _TourPackageDetailState extends State<TourPackageDetail> {
       child: CircularProgressIndicator(),
     ) : Scaffold(
       appBar: SecondaryAppBar(
-        title: "Tour Guide Detail",
+        title: "Transaction Detail",
       ),
       body: Container(
         height: double.infinity,
@@ -120,49 +120,17 @@ class _TourPackageDetailState extends State<TourPackageDetail> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(" Tour Guide Details"),
-              detailRow("packageId:", widget.snap["packageId"]),
-              detailRow("packageTitle:", widget.snap["packageTitle"]),
-              detailRow("content:", widget.snap["content"]),
-              detailRow("packageType:", widget.snap["packageType"].reduce((value, element) => value + ', ' + element)),
-              detailRow("price:", "RM" + widget.snap["price"].toStringAsFixed(2)),
+              const Text(" Transaction Details"),
+              detailRow("transactionId:", widget.snap["transactionId"]),
               detailRow("ownerId:", widget.snap["ownerId"]),
-              detailRow("createDate:", formatter.format(widget.snap["createDate"].toDate())),
-              Text("Image: "),
-              Container(
-                // margin: EdgeInsets.symmetric(horizontal: 25.0),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondaryContainer,
-                ),
-                child: GestureDetector(
-                  child: Hero(
-                    tag: 'imageHero',
-                    child: Image(
-                      height: 300,
-                      width: double.infinity,
-                      // width: double.infinity - 20,
-                      image: NetworkImage( widget.snap["photoUrl"]),
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                      return ImageFullScreen(imageUrl: widget.snap["photoUrl"],);
-                    }));
-                  },
-                ),
-              ),
+              detailRow("transactionAmount:", widget.snap["transactionAmount"]),
+              detailRow("newWalletBalance:", "RM ${widget.snap["newWalletBalance"].toStringAsFixed(2)}"),
+              detailRow("paymentDetails:", widget.snap["paymentDetails"]),
+              detailRow("paymentMethod:", widget.snap["paymentMethod"]),
+              detailRow("receiveFrom:", widget.snap["receiveFrom"]),
+              detailRow("status:", widget.snap["status"]),
+
+
               DeleteButton(
                 onPressed: () async {
                   final action = await Dialogs.yesAbortDialog(

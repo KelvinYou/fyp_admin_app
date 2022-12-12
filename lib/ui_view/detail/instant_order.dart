@@ -14,18 +14,18 @@ import 'package:fyp_admin_app/widget/dialogs.dart';
 import 'package:intl/intl.dart';
 import 'package:fyp_admin_app/widget/image_full_screen.dart';
 
-class TourPackageDetail extends StatefulWidget {
+class InstantOrderDetail extends StatefulWidget {
   final snap;
-  const TourPackageDetail({
+  const InstantOrderDetail({
     super.key,
     required this.snap,
   });
 
   @override
-  State<TourPackageDetail> createState() => _TourPackageDetailState();
+  State<InstantOrderDetail> createState() => _InstantOrderDetailState();
 }
 
-class _TourPackageDetailState extends State<TourPackageDetail> {
+class _InstantOrderDetailState extends State<InstantOrderDetail> {
   bool isLoading = false;
   List<String> selectedTypes = [];
 
@@ -90,7 +90,7 @@ class _TourPackageDetailState extends State<TourPackageDetail> {
   delete() async {
     String res = "Some error occurred";
     try {
-      FirebaseFirestore.instance.collection('tourPackages').doc(widget.snap["packageId"]).delete();
+      FirebaseFirestore.instance.collection('instantOrder').doc(widget.snap["orderID"]).delete();
       res = 'Deleted Successfully';
       showSnackBar(context, res);
       Navigator.of(context).pop();
@@ -108,7 +108,7 @@ class _TourPackageDetailState extends State<TourPackageDetail> {
       child: CircularProgressIndicator(),
     ) : Scaffold(
       appBar: SecondaryAppBar(
-        title: "Tour Guide Detail",
+        title: "Instant Order Detail",
       ),
       body: Container(
         height: double.infinity,
@@ -120,59 +120,22 @@ class _TourPackageDetailState extends State<TourPackageDetail> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(" Tour Guide Details"),
-              detailRow("packageId:", widget.snap["packageId"]),
-              detailRow("packageTitle:", widget.snap["packageTitle"]),
-              detailRow("content:", widget.snap["content"]),
-              detailRow("packageType:", widget.snap["packageType"].reduce((value, element) => value + ', ' + element)),
+              const Text(" Instant Order Details"),
+              detailRow("orderID:", widget.snap["orderID"]),
+              detailRow("ownerID:", widget.snap["ownerID"]),
+              detailRow("onDuty:", widget.snap["onDuty"].toString()),
               detailRow("price:", "RM" + widget.snap["price"].toStringAsFixed(2)),
-              detailRow("ownerId:", widget.snap["ownerId"]),
-              detailRow("createDate:", formatter.format(widget.snap["createDate"].toDate())),
-              Text("Image: "),
-              Container(
-                // margin: EdgeInsets.symmetric(horizontal: 25.0),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondaryContainer,
-                ),
-                child: GestureDetector(
-                  child: Hero(
-                    tag: 'imageHero',
-                    child: Image(
-                      height: 300,
-                      width: double.infinity,
-                      // width: double.infinity - 20,
-                      image: NetworkImage( widget.snap["photoUrl"]),
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                      return ImageFullScreen(imageUrl: widget.snap["photoUrl"],);
-                    }));
-                  },
-                ),
-              ),
-              DeleteButton(
-                onPressed: () async {
-                  final action = await Dialogs.yesAbortDialog(
-                      context, 'Confirm to delete?', '',
-                      'Delete');
-                  if (action == DialogAction.yes) {
-                    delete();
-                  }
-                },
-              ),
+
+              // DeleteButton(
+              //   onPressed: () async {
+              //     final action = await Dialogs.yesAbortDialog(
+              //         context, 'Confirm to delete?', '',
+              //         'Delete');
+              //     if (action == DialogAction.yes) {
+              //       delete();
+              //     }
+              //   },
+              // ),
             ],
           ),
         ),

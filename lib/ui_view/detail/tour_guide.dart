@@ -10,6 +10,7 @@ import 'package:fyp_admin_app/utils/app_theme.dart';
 import 'package:fyp_admin_app/widget/app_bar/secondary_app_bar.dart';
 import 'package:fyp_admin_app/widget/colored_button.dart';
 import 'package:fyp_admin_app/widget/delete_button.dart';
+import 'package:fyp_admin_app/widget/dialogs.dart';
 import 'package:intl/intl.dart';
 import 'package:fyp_admin_app/widget/image_full_screen.dart';
 
@@ -135,7 +136,16 @@ class _TourGuideDetailState extends State<TourGuideDetail> {
               detailRow("isIcVerified:", widget.tourGuideDetailSnap["isIcVerified"].toString()),
               detailRow("grade:", widget.tourGuideDetailSnap["grade"]),
 
-              DeleteButton(onPressed: delete),
+              DeleteButton(
+                onPressed: () async {
+                  final action = await Dialogs.yesAbortDialog(
+                      context, 'Confirm to delete?', '',
+                      'Delete');
+                  if (action == DialogAction.yes) {
+                    delete();
+                  }
+                },
+              ),
             ],
           ),
         ),
