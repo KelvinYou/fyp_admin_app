@@ -103,29 +103,29 @@ class _RegisterState extends State<Register> {
 
     if (usernameFormatCorrected && emailFormatCorrected
         && passwordFormatCorrected && reenterPasswordFormatCorrected) {
-      String res = await AuthMethods().signUpUser(
-        email: _emailController.text,
-        password: _passwordController.text,
-        username: _usernameController.text,);
-
-      // if string returned is success, user has been created
-      if (res == "success") {
-        setState(() {
-          _isLoading = false;
-        });
-        // navigate to the home screen
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const BottomBarView(selectedIndex: 0),
-          ),
-        );
-      } else {
-        setState(() {
-          _isLoading = false;
-        });
-        // show the error
-        showSnackBar(context, res);
-      }
+      // String res = await AuthMethods().signUpUser(
+      //   email: _emailController.text,
+      //   password: _passwordController.text,
+      //   username: _usernameController.text,);
+      //
+      // // if string returned is success, user has been created
+      // if (res == "success") {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      //   // navigate to the home screen
+      //   Navigator.of(context).pushReplacement(
+      //     MaterialPageRoute(
+      //       builder: (context) => const BottomBarView(selectedIndex: 0),
+      //     ),
+      //   );
+      // } else {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      //   // show the error
+      //   showSnackBar(context, res);
+      // }
     }
     setState(() {
       _isLoading = false;
