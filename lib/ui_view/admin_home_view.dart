@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fyp_admin_app/ui_view/database/bookings.dart';
+import 'package:fyp_admin_app/ui_view/database/ic_verifications.dart';
 import 'package:fyp_admin_app/ui_view/database/instant_orders.dart';
+import 'package:fyp_admin_app/ui_view/database/licence_verification.dart';
 import 'package:fyp_admin_app/ui_view/database/tour_guides.dart';
 import 'package:fyp_admin_app/ui_view/database/tour_packages.dart';
 import 'package:fyp_admin_app/ui_view/database/transactions.dart';
@@ -137,7 +139,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const TourGuidesView(),
+                            builder: (context) => const IcVerificationsView(),
                           ),
                         ),
                         child: selectionView(
@@ -155,7 +157,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const TourGuidesView(),
+                            builder: (context) => const LicenceVerificationsView(),
                           ),
                         ),
                         child: selectionView(
