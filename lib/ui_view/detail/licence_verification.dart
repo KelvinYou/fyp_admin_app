@@ -90,8 +90,24 @@ class _LicenceVerificationDetailState extends State<LicenceVerificationDetail> {
   delete() async {
     String res = "Some error occurred";
     try {
-      FirebaseFirestore.instance.collection('bookings').doc(widget.snap["bookingId"]).delete();
+      FirebaseFirestore.instance.collection('licences').doc(widget.snap["licenceId"]).delete();
       res = 'Deleted Successfully';
+      showSnackBar(context, res);
+      Navigator.of(context).pop();
+
+    } catch (err) {
+      res = err.toString();
+    }
+    showSnackBar(context, res);
+  }
+
+  approve() async {
+    String res = "Some error occurred";
+    try {
+      FirebaseFirestore.instance.collection('licences').doc(widget.snap["licenceId"]).update({
+        "status": "Approved"
+      });
+      res = 'Approve Successfully';
       showSnackBar(context, res);
       Navigator.of(context).pop();
 
@@ -124,7 +140,52 @@ class _LicenceVerificationDetailState extends State<LicenceVerificationDetail> {
               const Text(" Licence Verification Details"),
               detailRow("licenceId:", widget.snap["licenceId"]),
               detailRow("ownerId:", widget.snap["ownerId"]),
+              detailRow("status:", widget.snap["status"]),
+              const SizedBox(height: 20,),
+              Container(
+                // margin: EdgeInsets.symmetric(horizontal: 25.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                ),
+                child: GestureDetector(
+                  child: Hero(
+                    tag: 'imageHero',
+                    child: Image(
+                      height: 300,
+                      width: double.infinity,
+                      // width: double.infinity - 20,
+                      image: NetworkImage( widget.snap["licencePhotoUrl"]),
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return ImageFullScreen(imageUrl: widget.snap["licencePhotoUrl"],);
+                    }));
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 20,),
+
+              ColoredButton(
+                  onPressed: approve,
+                  childText: "Approve",
+              ),
+              const SizedBox(height: 10,),
               DeleteButton(
+                inverseColor: true,
                 onPressed: () async {
                   final action = await Dialogs.yesAbortDialog(
                       context, 'Confirm to delete?', '',
@@ -134,6 +195,8 @@ class _LicenceVerificationDetailState extends State<LicenceVerificationDetail> {
                   }
                 },
               ),
+
+              const SizedBox(height: 20,),
             ],
           ),
         ),

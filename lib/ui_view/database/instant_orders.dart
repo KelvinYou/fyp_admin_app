@@ -125,8 +125,8 @@ class _InstantOrdersViewState extends State<InstantOrdersView> {
                       //todo Documents list added to filterTitle
                       documents = documents.where((element) {
                         return element
-                            .get(dropdownValue)
-                            .contains(searchText);
+                            .get(dropdownValue).toLowerCase()
+                            .contains(searchText.toLowerCase());
                       }).toList();
                     }
                     return ListView.builder(

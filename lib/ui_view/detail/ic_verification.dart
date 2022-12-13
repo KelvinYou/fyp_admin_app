@@ -90,8 +90,27 @@ class _IcVerificationDetailState extends State<IcVerificationDetail> {
   delete() async {
     String res = "Some error occurred";
     try {
-      FirebaseFirestore.instance.collection('bookings').doc(widget.snap["bookingId"]).delete();
+      FirebaseFirestore.instance.collection('icVerifications').doc(widget.snap["verifyIcId"]).delete();
       res = 'Deleted Successfully';
+      showSnackBar(context, res);
+      Navigator.of(context).pop();
+
+    } catch (err) {
+      res = err.toString();
+    }
+    showSnackBar(context, res);
+  }
+
+  approve() async {
+    String res = "Some error occurred";
+    try {
+      FirebaseFirestore.instance.collection('icVerifications').doc(widget.snap["verifyIcId"]).update({
+        "status": "Approved"
+      });
+      FirebaseFirestore.instance.collection('icVerifications').doc(widget.snap["verifyIcId"]).update({
+        "status": "Approved"
+      });
+      res = 'Approve Successfully';
       showSnackBar(context, res);
       Navigator.of(context).pop();
 
@@ -122,9 +141,131 @@ class _IcVerificationDetailState extends State<IcVerificationDetail> {
             children: <Widget>[
 
               const Text(" IC Verification Details"),
+
               detailRow("verifyIcId:", widget.snap["verifyIcId"]),
               detailRow("ownerId:", widget.snap["ownerId"]),
+              detailRow("status:", widget.snap["status"]),
+
+              const SizedBox(height: 20,),
+              Text("IC front"),
+              Container(
+                // margin: EdgeInsets.symmetric(horizontal: 25.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                ),
+                child: GestureDetector(
+                  child: Hero(
+                    tag: 'imageHero',
+                    child: Image(
+                      height: 300,
+                      width: double.infinity,
+                      // width: double.infinity - 20,
+                      image: NetworkImage( widget.snap["icFrontPic"]),
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return ImageFullScreen(imageUrl: widget.snap["icFrontPic"],);
+                    }));
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+              Text("IC back"),
+              Container(
+                // margin: EdgeInsets.symmetric(horizontal: 25.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                ),
+                child: GestureDetector(
+                  child: Hero(
+                    tag: 'imageHero1',
+                    child: Image(
+                      height: 300,
+                      width: double.infinity,
+                      // width: double.infinity - 20,
+                      image: NetworkImage( widget.snap["icBackPic"]),
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return ImageFullScreen(imageUrl: widget.snap["icBackPic"],);
+                    }));
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+              Text("IC hold"),
+              Container(
+                // margin: EdgeInsets.symmetric(horizontal: 25.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                ),
+                child: GestureDetector(
+                  child: Hero(
+                    tag: 'imageHero2',
+                    child: Image(
+                      height: 300,
+                      width: double.infinity,
+                      // width: double.infinity - 20,
+                      image: NetworkImage( widget.snap["icHoldPic"]),
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return ImageFullScreen(imageUrl: widget.snap["icHoldPic"],);
+                    }));
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 20,),
+
+              ColoredButton(
+                onPressed: approve,
+                childText: "Approve",
+              ),
+
+              const SizedBox(height: 10,),
+
               DeleteButton(
+                inverseColor: true,
                 onPressed: () async {
                   final action = await Dialogs.yesAbortDialog(
                       context, 'Confirm to delete?', '',
@@ -134,6 +275,8 @@ class _IcVerificationDetailState extends State<IcVerificationDetail> {
                   }
                 },
               ),
+
+              const SizedBox(height: 20,),
             ],
           ),
         ),

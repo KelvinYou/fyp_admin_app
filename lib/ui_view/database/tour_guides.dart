@@ -124,8 +124,8 @@ class _TourGuidesViewState extends State<TourGuidesView> {
 
                     documents = documents.where((element) {
                       return element
-                          .get(dropdownValue)
-                          .contains(searchText);
+                          .get(dropdownValue).toLowerCase()
+                          .contains(searchText.toLowerCase());
                     }).toList();
                   }
                   return ListView.builder(

@@ -35,6 +35,8 @@ class _IcVerificationsViewState extends State<IcVerificationsView> {
   String dropdownValue = list.first;
   String searchText = "";
 
+  String status = "Pending";
+
   @override
   void initState() {
     super.initState();
@@ -47,6 +49,35 @@ class _IcVerificationsViewState extends State<IcVerificationsView> {
     //       const Login(),
     //     )
     // );
+  }
+
+  Widget topBarSelection(String title) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => setState(() {
+          status = title;
+        }),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 5.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: status == title ?
+            Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.background,
+          ),
+          child: Center(
+            child: Text(
+              title,
+              style: TextStyle(
+                color: status == title ? Colors.white : Theme.of(context).colorScheme.onPrimary,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget build(BuildContext context) {
@@ -115,6 +146,17 @@ class _IcVerificationsViewState extends State<IcVerificationsView> {
                 textInputType: TextInputType.text,
                 iconData: Icons.search_outlined,
               ),
+
+              const SizedBox(height: 10),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  children: [
+                    topBarSelection("Pending"),
+                    topBarSelection("Approved"),
+                  ],
+                ),
+              ),
               const SizedBox(height: 10),
 
               Expanded(
@@ -127,8 +169,14 @@ class _IcVerificationsViewState extends State<IcVerificationsView> {
                       //todo Documents list added to filterTitle
                       documents = documents.where((element) {
                         return element
-                            .get(dropdownValue)
-                            .contains(searchText);
+                            .get(dropdownValue).toLowerCase()
+                            .contains(searchText.toLowerCase());
+                      }).toList();
+
+                      documents = documents.where((element) {
+                        return element
+                            .get('status')
+                            .contains(status);
                       }).toList();
                     }
                     return ListView.builder(

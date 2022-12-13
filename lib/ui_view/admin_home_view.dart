@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fyp_admin_app/ui_view/database/bookings.dart';
 import 'package:fyp_admin_app/ui_view/database/ic_verifications.dart';
 import 'package:fyp_admin_app/ui_view/database/instant_orders.dart';
-import 'package:fyp_admin_app/ui_view/database/licence_verification.dart';
+import 'package:fyp_admin_app/ui_view/database/licence_verifications.dart';
 import 'package:fyp_admin_app/ui_view/database/tour_guides.dart';
 import 'package:fyp_admin_app/ui_view/database/tour_packages.dart';
 import 'package:fyp_admin_app/ui_view/database/transactions.dart';

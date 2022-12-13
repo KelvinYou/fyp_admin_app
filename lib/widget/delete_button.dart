@@ -3,9 +3,11 @@ import 'package:fyp_admin_app/utils/app_theme.dart';
 
 class DeleteButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final bool inverseColor;
 
   DeleteButton({
     required this.onPressed,
+    this.inverseColor = false,
   });
 
   @override
@@ -15,7 +17,8 @@ class DeleteButton extends StatelessWidget {
       child: Ink(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
+          color: inverseColor ? Theme.of(context).colorScheme.background
+              : Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(5.0),
           border: Border.all(
             color: Theme.of(context).colorScheme.primary,
@@ -33,7 +36,8 @@ class DeleteButton extends StatelessWidget {
               "Delete",
               style: TextStyle(
                 fontSize: 16.0,
-                color: Colors.white,
+                color: inverseColor ? Theme.of(context).colorScheme.primary
+                    : Colors.white,
               ),
             ),
         ),
