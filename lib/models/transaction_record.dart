@@ -5,6 +5,7 @@ class TransactionRecord {
   final String transactionAmount;
   final String ownerId;
   final String receiveFrom;
+  final String transferTo;
   final String transactionType;
   final String paymentDetails;
   final String paymentMethod;
@@ -16,7 +17,8 @@ class TransactionRecord {
       {required this.transactionId,
         required this.transactionAmount,
         required this.ownerId,
-        required this.receiveFrom,
+        this.receiveFrom = "",
+        this.transferTo = "",
         required this.transactionType,
         required this.paymentDetails,
         required this.paymentMethod,
@@ -33,6 +35,7 @@ class TransactionRecord {
       transactionAmount: snapshot["transactionAmount"],
       ownerId: snapshot["ownerId"],
       receiveFrom: snapshot["receiveFrom"],
+      transferTo: snapshot["transferTo"],
       transactionType: snapshot["transactionType"],
       paymentDetails: snapshot["paymentDetails"],
       paymentMethod: snapshot["paymentMethod"],
@@ -47,6 +50,7 @@ class TransactionRecord {
     "transactionAmount": transactionAmount,
     "ownerId": ownerId,
     "receiveFrom": receiveFrom,
+    "transferTo": transferTo,
     "transactionType": transactionType,
     "paymentDetails": paymentDetails,
     "paymentMethod": paymentMethod,

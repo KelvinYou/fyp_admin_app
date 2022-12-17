@@ -127,7 +127,15 @@ class _TransactionDetailState extends State<TransactionDetail> {
               detailRow("newWalletBalance:", "RM ${widget.snap["newWalletBalance"].toStringAsFixed(2)}"),
               detailRow("paymentDetails:", widget.snap["paymentDetails"]),
               detailRow("paymentMethod:", widget.snap["paymentMethod"]),
-              detailRow("receiveFrom:", widget.snap["receiveFrom"]),
+
+              widget.snap["receiveFrom"] != null ?
+              widget.snap["receiveFrom"] == "" ? SizedBox() :
+              detailRow("receiveFrom:", widget.snap["receiveFrom"]) : SizedBox(),
+
+              widget.snap["transferTo"] != null ?
+              widget.snap["transferTo"] == "" ? SizedBox() :
+              detailRow("transferTo:", widget.snap["transferTo"]) : SizedBox(),
+
               detailRow("status:", widget.snap["status"]),
 
 
